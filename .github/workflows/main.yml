@@ -3,7 +3,7 @@ name: snowflake-devops-QA
 on:
   pull_request:
    branches:
-    - "QA"
+    - main
    types: [closed]
    paths:
       - 'migrations/**'
