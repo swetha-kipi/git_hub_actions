@@ -33,4 +33,4 @@ jobs:
           pip install schemachange
           
           echo "Step 2: Running schemachange"
-          schemachange -f "$GITHUB_WORKSPACE/migrations" --connections-file-path .github/workflows/dev_config.toml  
+          schemachange -f "$GITHUB_WORKSPACE/migrations" --connections-file-path .github/workflows/config.toml  
