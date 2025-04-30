@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'git_hub_actions/migrations/**'
+      - 'migrations/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -40,12 +40,8 @@ jobs:
           pip install schemachange==3.7.0 
           
           echo "Step 2: Running schemachange"
-          echo "Account: $SF_ACCOUNT"  
-          echo "User: $SF_USERNAME"  
-          echo "Warehouse: $SF_WAREHOUSE"  
-          echo "Role: $SF_ROLE"
           schemachange \
-            -f "$GITHUB_WORKSPACE/git_hub_actions/migrations" \
+            -f "$GITHUB_WORKSPACE/migrations" \
             -a "$SF_ACCOUNT" \
             -u "$SF_USERNAME" \ 
             -r "$SF_ROLE" \
