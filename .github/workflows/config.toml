@@ -1,7 +1,7 @@
-connection:  
-  account: "VFFVXOG-NW61788.ap-south-1.aws"  
-  user: "swetha"  
-  role: "accountadmin"  
-  warehouse: "compute_wh"  
-  database: "test_db"     # optional but recommended  
-  password: "Nag131197@test"     # if not using other auth methods  
+connection  
+  account = "VFFVXOG-NW61788.ap-south-1.aws"  
+  user = "swetha"  
+  role = "accountadmin"  
+  warehouse = "compute_wh"  
+  database = "test_db"     # optional but recommended  
+  password = "Nag131197@test"     # if not using other auth methods  
