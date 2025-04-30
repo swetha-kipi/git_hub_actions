@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'migrations/**'
+      - 'git_hub_actions/migrations/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -45,7 +45,7 @@ jobs:
           echo "Warehouse: $SF_WAREHOUSE"  
           echo "Role: $SF_ROLE"
           schemachange \
-            -f "$GITHUB_WORKSPACE/migrations" \
+            -f "$GITHUB_WORKSPACE/git_hub_actions/migrations" \
             -a "$SF_ACCOUNT" \
             -u "$SF_USERNAME" \ 
             -r "$SF_ROLE" \
