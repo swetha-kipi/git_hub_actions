@@ -20,6 +20,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Changing Permissions of config.toml file
+        run: |
+          chown $USER ".github/workflows/config.toml"
+          chmod 0600 ".github/workflows/config.toml"
+
       - name: Use Python 3.8.x
         uses: actions/setup-python@v2.2.1
         with:
