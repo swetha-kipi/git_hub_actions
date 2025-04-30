@@ -1,4 +1,4 @@
-connection  
+connection  :
   account = "VFFVXOG-NW61788.ap-south-1.aws"  
   user = "swetha"  
   role = "accountadmin"  
