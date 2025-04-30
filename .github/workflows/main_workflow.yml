@@ -15,8 +15,16 @@ jobs:
   deploy-snowflake-changes-job:
     runs-on: ubuntu-latest
 
+    env:
+      # Add your secrets here for clarity; these should be set in GitHub Secrets
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+      SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
+      SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -25,13 +33,23 @@ jobs:
         with:
           python-version: 3.12.x
 
-      - name: Run schemachange
-         
+      - name: Generate config.yml with secrets
         run: |
-          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
-          python --version
-          echo "Step 1: Installing schemachange"
-          pip install schemachange 
-          
-          echo "Step 2: Running schemachange"
-          schemachange deploy -c config.yml
+          cat > config.yml <<EOF
+          snowflake:
+            account: "${{ env.SNOWFLAKE_ACCOUNT }}"
+            user: "${{ env.SNOWFLAKE_USER }}"
+            password: "${{ env.SNOWFLAKE_PASSWORD }}"
+            warehouse: "${{ env.SNOWFLAKE_WAREHOUSE }}"
+            database: "${{ env.SNOWFLAKE_DATABASE }}"
+            schema: "${{ env.SNOWFLAKE_SCHEMA }}"
+          EOF
+
+      - name: Verify generated config.yml
+        run: cat config.yml
+
+      - name: Install schemachange
+        run: pip install schemachange
+
+      - name: Run schemachange
+        run: schemachange deploy -c config.yml
