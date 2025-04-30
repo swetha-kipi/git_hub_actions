@@ -44,6 +44,7 @@ jobs:
             -f "$GITHUB_WORKSPACE/migrations" \
             -a "$SF_ACCOUNT" \
             -u "$SF_USERNAME" \
+            -p "$SNOWFLAKE_PASSWORD" \
             -r "$SF_ROLE" \
             -w "$SF_WAREHOUSE" \
             -d "$SF_DATABASE" \
