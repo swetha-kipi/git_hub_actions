@@ -44,12 +44,4 @@ jobs:
           echo "User: $SF_USERNAME"  
           echo "Warehouse: $SF_WAREHOUSE"  
           echo "Role: $SF_ROLE"
-          schemachange \
-            -f "$GITHUB_WORKSPACE/migrations" \
-            -a "$SF_ACCOUNT" \
-            -u "$SF_USERNAME" \
-            -r "$SF_ROLE" \
-            -w "$SF_WAREHOUSE" \
-            -d "$SF_DATABASE" \
-            -c "$SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY" \
-            --create-change-history-table
+          schemachange  -- config config.yml
