@@ -40,4 +40,13 @@ jobs:
           pip install schemachange==3.7.0 
           
           echo "Step 2: Running schemachange"
-          schemachange -f $GITHUB_WORKSPACE/Migrations -a $SF_ACCOUNT -u $SF_QA_USERNAME -r $SF_QA_ROLE -w $SF_WAREHOUSE -d $SF_QA_DB -c $SF_QA_DB.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
+            schemachange \
+            -f "$GITHUB_WORKSPACE/migrations" \
+            -a "$SF_ACCOUNT" \
+            -u "$SF_USERNAME" \
+            -p "$SNOWFLAKE_PASSWORD" \
+            -r "$SF_ROLE" \
+            -w "$SF_WAREHOUSE" \
+            -d "$SF_DATABASE" \
+            -c "$SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY" \
+            --create-change-history-table
