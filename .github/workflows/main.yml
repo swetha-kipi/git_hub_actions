@@ -1,9 +1,9 @@
-name: snowflake-devops-QA
+name: snowflake-devops 
 # Controls when the action will run.
 on:
   pull_request:
    branches:
-    - main
+    - "main"
    types: [closed]
    paths:
       - 'migrations/**'
