@@ -1,5 +1,5 @@
 [snowflakeconnection]
-  account = 'NW61788' 
+  account = 'NW61788.ap-south-1.aws' 
   user = 'SWETHA'  
   role = 'accountadmin'  
   warehouse = 'compute_wh'  
