@@ -38,4 +38,5 @@ jobs:
           pip install schemachange
           
           echo "Step 2: Running schemachange"
-          schemachange -f "$GITHUB_WORKSPACE/migrations" --connections-file-path .github/workflows/config.toml --connection-name snowflakeconnection  -c TEST_DB.TEST_SCH  
+          schemachange -f "$GITHUB_WORKSPACE/migrations" --connections-file-path .github/workflows/config.toml --connection-name snowflakeconnection  -c "TEST_DB.SCHEMACHANGE.CHANGE_HISTORY" \
+            --create-change-history-table  
