@@ -1,6 +1,6 @@
 [snowflakeconnection]
-  account = 'https://vffvxog-nw61788.snowflakecomputing.com' 
-  user = 'SWETHA'  
+  account = 'VFFVXOG-NW61788' 
+  user = 'swetha'  
   role = 'accountadmin'  
   warehouse = 'compute_wh'  
   database = 'test_db'     # optional but recommended  
