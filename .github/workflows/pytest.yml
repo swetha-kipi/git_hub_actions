@@ -1,0 +1,70 @@
+name: snowflake-devops-demo
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'migrations/**'
+      - 'test_twitter_rda.py'  # Add your test script path
+
+jobs:
+  deploy-snowflake-changes-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Changing Permissions of config.toml file
+        run: |
+          chown $USER ".github/workflows/config.toml"
+          chmod 0600 ".github/workflows/config.toml"
+
+      - name: Use Python 3.12.x
+        uses: actions/setup-python@v2.2.1
+        with:
+          python-version: 3.12.x
+
+      - name: Identify changed files
+        id: changed_files
+        run: |
+          git fetch origin main
+          CHANGED=$(git diff --name-only origin/main...HEAD)
+          echo "changed_files=$CHANGED" >> $GITHUB_OUTPUT
+
+      - name: Determine if tests should run
+        run: |
+          echo "${{ steps.changed_files.outputs.changed_files }}" | grep -E 'tests/test_twitter_rda.py' || echo "No relevant test changes"
+        id: check_tests
+        continue-on-error: true
+
+      - name: Run test_twitter_rda.py if relevant files changed
+        if: steps.check_tests.outputs.changed_files != ''
+        run: |
+          python3 -m unittest discover  -p 'test_twitter_rda.py'
+        id: run_tests
+        continue-on-error: true
+
+      - name: Check test results and decide to deploy
+        run: |
+          if [ "${{ steps.run_tests.outcome }}" == "failure" ]; then
+            echo "Tests failed. Sending email notification..."
+            # Placeholder: Insert your email logic here (e.g., using a script or email action)
+            exit 1
+          elif [ "${{ steps.run_tests.outcome }}" == "success" ]; then
+            echo "Tests passed! Proceeding to deployment..."
+          else
+            echo "Tests were skipped or not run."
+            exit 0
+          fi
+
+      - name: Deploy to Snowflake if tests pass
+        if: steps.run_tests.outcome == 'success'
+        run: |
+          echo "Running schemachange for deployment..."
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          python --version
+          pip install schemachange
+          schemachange -f "$GITHUB_WORKSPACE/migrations" --connections-file-path .github/workflows/config.toml --connection-name snowflakeconnection -c "TEST_DB.SCHEMACHANGE.CHANGE_HISTORY" --create-change-history-table
+          
