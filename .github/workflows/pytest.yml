@@ -36,7 +36,7 @@ jobs:
 
       - name: Determine if tests should run
         run: |
-          echo "${{ steps.changed_files.outputs.changed_files }}" | grep -E 'tests/test_twitter_rda.py' || echo "No relevant test changes"
+          echo "${{ steps.changed_files.outputs.changed_files }}" | grep -E 'test_twitter_rda.py' || echo "No relevant test changes"
         id: check_tests
         continue-on-error: true
 
