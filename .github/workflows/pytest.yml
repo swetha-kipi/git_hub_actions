@@ -7,6 +7,7 @@ on:
     paths:
       - 'migrations/**'
       - 'test_twitter_rda.py'  # Add your test script path
+  workflow_dispatch:
 
 jobs:
   deploy-snowflake-changes-job:
