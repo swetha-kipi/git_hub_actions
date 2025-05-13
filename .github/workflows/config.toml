@@ -1,7 +1,7 @@
 [snowflakeconnection]
-  account = 'VFFVXOG-NW61788' 
-  user = 'swetha'  
-  role = 'accountadmin'  
-  warehouse = 'compute_wh'  
-  database = 'test_db'     # optional but recommended  
-  password = 'Nag131197@test'     # if not using other auth methods  
+  account = 'A6547988765371-WDB90849' 
+  user = 'nswetha'  
+  role = 'sr_dev_etl'  
+  warehouse = 'dev_data_engineer_xs_wh'  
+  database = 'GROWTH_PROTOCOL_TESTING_DB'     # optional but recommended  
+  password = 'Gpswetha2'     # if not using other auth methods  
