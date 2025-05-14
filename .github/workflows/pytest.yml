@@ -3,7 +3,7 @@ name: snowflake-devops-demo
 on:
   push:
     branches:
-      - test_branch
+      - main
     paths:
       - 'migrations/**'
       - 'test_twitter_rda.py'  # Add your test script path
