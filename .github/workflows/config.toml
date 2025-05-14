@@ -1,5 +1,5 @@
 [snowflakeconnection]
-  account = 'A6547988765371-WDB90849' 
+  account = account_url'A6547988765371-WDB90849' 
   user = 'nswetha'  
   role = 'sr_dev_etl'  
   warehouse = 'dev_data_engineer_xs_wh'  
