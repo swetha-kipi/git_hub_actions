@@ -86,5 +86,5 @@ jobs:
           schemachange -f "$GITHUB_WORKSPACE/migrations" \
             --connections-file-path .github/workflows/config.toml \
             --connection-name snowflakeconnection \
-            -c "TEST_DB.SCHEMACHANGE.CHANGE_HISTORY" \
+            -c "GROWTH_PROTOCOL_TESTING_DB.SCHEMACHANGE.CHANGE_HISTORY" \
             --create-change-history-table
