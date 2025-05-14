@@ -67,5 +67,5 @@ jobs:
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           python --version
           pip install schemachange
-          schemachange -f "$GITHUB_WORKSPACE/migrations" --connections-file-path .github/workflows/config.toml --connection-name snowflakeconnection -c "TEST_DB.SCHEMACHANGE.CHANGE_HISTORY" --create-change-history-table
+          schemachange -f "$GITHUB_WORKSPACE/migrations" --connections-file-path .github/workflows/config.toml --connection-name snowflakeconnection -c "GROWTH_PROTOCOL_TESTING_DB.SCHEMACHANGE.CHANGE_HISTORY" --create-change-history-table
           
